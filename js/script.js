@@ -15,19 +15,18 @@ Creiamo delle miniature di tutte le immagni, in cui dovrà apparire in evidenza 
 */
 
 //array fornito e un ciclo for.
-const sources =  ['img/01.jpg','img/02.jpg','img/03.jpg','img/04.jpg','img/05.jpg',]
+
 
 //recupero le immagini dal DOM
 const images = document.querySelectorAll(' #carousel img');
 
 
 //prepariamo una variabile per tenere d'occhio l'immagine con classe active
-let courrentActiveIndex = 3;
+let courrentActiveIndex = 0;
 
 
 //dico che all'apertura l'immagine 4 e quella standard
 images[courrentActiveIndex].classList.add('active');
-
 
 //logica button
 //recupero i button dal dom
@@ -40,25 +39,11 @@ nextBUtton.addEventListener('click', function(){
     //incremento activeIndex
     courrentActiveIndex++;
     //verifico che rimanga nella quantità di img
-    if(courrentActiveIndex === images.length){
+    if(courrentActiveIndex === images.length - 1){
         courrentActiveIndex = 0
         //aggiungo active
     }else{
         images[courrentActiveIndex].classList.add('active')
         
     }
-})
-
-prevButton.addEventListener('click', function(){
-    //tolgo active
-    images[courrentActiveIndex].classList.remove('active')
-    //incremento activeIndex
-    courrentActiveIndex--;
-    //verifico che rimanga nella quantità di img
-    if(courrentActiveIndex === images.length -1 ){
-        courrentActiveIndex = 0
-        //aggiungo active
-    }
-        images[courrentActiveIndex].classList.add('active')
-
 })
