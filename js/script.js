@@ -14,10 +14,11 @@ BONUS 2:
 Creiamo delle miniature di tutte le immagni, in cui dovrà apparire in evidenza l’immagine equivalente a quella attiva, scegliete liberamente se scurire le altre immagini oppure se evidenziarla semplicemente con un bordo. Tra queste miniature, quella corrispondente all'immagine attiva deve evidenziarsi, scegliete voi l'effetto estetico, potete colorarla diversamente rispetto alle altre o aggiungere un semplice bordo.
 */
 
-//array fornito e un semplice ciclo for.
+//array fornito e un ciclo for.
+const sources =  ['img/01.jpg','img/02.jpg','img/03.jpg','img/04.jpg','img/05.jpg',]
 
 //recupero le immagini dal DOM
-const images = document.querySelectorAll('#carousel img');
+const images = document.querySelectorAll(' #carousel img');
 
 
 //prepariamo una variabile per tenere d'occhio l'immagine con classe active
@@ -29,3 +30,35 @@ images[courrentActiveIndex].classList.add('active');
 
 
 //logica button
+//recupero i button dal dom
+const prevButton = document.getElementById('prev')
+const nextBUtton = document.getElementById('next')
+//logica del button next
+nextBUtton.addEventListener('click', function(){
+    //tolgo active
+    images[courrentActiveIndex].classList.remove('active')
+    //incremento activeIndex
+    courrentActiveIndex++;
+    //verifico che rimanga nella quantità di img
+    if(courrentActiveIndex === images.length){
+        courrentActiveIndex = 0
+        //aggiungo active
+    }else{
+        images[courrentActiveIndex].classList.add('active')
+        
+    }
+})
+
+prevButton.addEventListener('click', function(){
+    //tolgo active
+    images[courrentActiveIndex].classList.remove('active')
+    //incremento activeIndex
+    courrentActiveIndex--;
+    //verifico che rimanga nella quantità di img
+    if(courrentActiveIndex === images.length -1 ){
+        courrentActiveIndex = 0
+        //aggiungo active
+    }
+        images[courrentActiveIndex].classList.add('active')
+
+})
