@@ -15,8 +15,16 @@ Creiamo delle miniature di tutte le immagni, in cui dovrà apparire in evidenza 
 */
 
 //array fornito e un ciclo for.
+const gallery = document.querySelector('#carousel .gallery')
+const sources = ['img/01.jpg','img/02.jpg','img/03.jpg','img/04.jpg','img/05.jpg']
 
+let imageElemens = '';
 
+for(let i = 0 ; i < sources.length; i++){
+    imageElemens += `<img src="${sources[i]}" alt="lendscape-${i + 1}" />`
+}
+
+gallery.innerHTML = imageElemens
 //recupero le immagini dal DOM
 const images = document.querySelectorAll(' #carousel img');
 
@@ -31,19 +39,37 @@ images[courrentActiveIndex].classList.add('active');
 //logica button
 //recupero i button dal dom
 const prevButton = document.getElementById('prev')
-const nextBUtton = document.getElementById('next')
+const nextButton = document.getElementById('next')
 //logica del button next
-nextBUtton.addEventListener('click', function(){
+nextButton.addEventListener('click', function(){
     //tolgo active
     images[courrentActiveIndex].classList.remove('active')
     //incremento activeIndex
     courrentActiveIndex++;
     //verifico che rimanga nella quantità di img
-    if(courrentActiveIndex === images.length - 1){
+    if(courrentActiveIndex > images.length - 1){
         courrentActiveIndex = 0
+        images[courrentActiveIndex].classList.add('active')
         //aggiungo active
     }else{
         images[courrentActiveIndex].classList.add('active')
         
     }
 })
+//logica del button prev
+prevButton.addEventListener('click', function(){
+    //tolgo active
+    images[courrentActiveIndex].classList.remove('active')
+    //decremento activeIndex
+    courrentActiveIndex--;
+    //verifico che rimanga nella quantità di img
+    if(courrentActiveIndex < 0){
+        courrentActiveIndex = images.length - 1 ;
+        images[courrentActiveIndex].classList.add('active')
+        //aggiungo active
+    }else{
+        images[courrentActiveIndex].classList.add('active')
+    }
+})
+
+
